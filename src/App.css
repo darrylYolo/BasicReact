@@ -36,3 +36,7 @@ nav {
 .MuiButtonBase-root {
   margin: 7px !important;
 }
+
+.inputLabel {
+  padding-right: .2rem;
+}

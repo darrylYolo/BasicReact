@@ -1,8 +1,15 @@
+const baseurl = "https://jsonplaceholder.typicode.com";
+const baseurlMine = "http://192.168.50.28:8080";
+
 export const getAllPosts = () => {
   return new Promise((resolve, reject) => {
     try {
-      fetch(`https://jsonplaceholder.typicode.com/posts`)
-        .then((response) => response.json())
+      console.log(`${baseurlMine}/potss`);
+      fetch(`${baseurlMine}/potss`)
+        .then((response) => {
+          console.log(response);
+          response.json();
+        })
         .then((json) => {
           console.log(json);
           return resolve(json);
@@ -19,7 +26,7 @@ export const getAllPosts = () => {
 export const getPostsUsingThen = (id) => {
   return new Promise((resolve, reject) => {
     try {
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      fetch(`${baseurl}/posts/${id}`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);
@@ -36,9 +43,7 @@ export const getPostsUsingThen = (id) => {
 
 export const getPostsUsingAwait = async (id) => {
   try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
+    const response = await fetch(`${baseurl}/posts/${id}`);
     // console.log(await response.json()); // this works
 
     // console.log(response.json()) //this does not work
@@ -56,7 +61,7 @@ export const submitPostsUsingThen = (request) => {
   // console.log('title! '+title);
   return new Promise((resolve, reject) => {
     try {
-      fetch(`https://jsonplaceholder.typicode.com/posts`, {
+      fetch(`${baseurl}/posts`, {
         method: "POST",
         body: JSON.stringify(request),
         headers: {
@@ -77,7 +82,7 @@ export const submitPostsUsingThen = (request) => {
 
 export const postSomethingUsingAwait = () => async () => {
   try {
-    const response = fetch(`https://jsonplaceholder.typicode.com/posts`, {
+    const response = fetch(`${baseurl}/posts`, {
       method: "POST",
       body: JSON.stringify({
         title: "foo",
@@ -100,7 +105,7 @@ export const postSomethingUsingAwait = () => async () => {
 
 export const deleteSomethingUsingThen = (id) => {
   try {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    fetch(`${baseurl}/posts/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())

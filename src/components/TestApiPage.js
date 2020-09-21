@@ -4,8 +4,12 @@ import {
   getPostsUsingAwait,
   getPostsUsingThen,
   deleteSomethingUsingThen,
+  getAllPosts,
 } from "../Services/apiCalls";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import CustomInput from "../common/CustomInput";
+
 import PostList from "./PostList";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
@@ -14,34 +18,39 @@ function TestApiPage() {
   const [viewResult, setViewResult] = useState([]);
   const [showSucces, setShowSucces] = useState(false);
 
-  useEffect(() => {
-    console.log("viewResult: " + viewResult);
-  }, [viewResult]);
+  // useEffect(() => {
+  //   console.log("viewResult: " + viewResult);
+  // }, [viewResult]);
 
   const submitForm = () => {
-    let objectConstructor = {}.constructor;
-    try {
-      getPostsUsingThen(postID).then((response) => {
-        //do not do this
-        if (response.constructor === objectConstructor) {
-          if (viewResult.length > 0) {
-            setViewResult(viewResult.splice(0, 1, response));
+    getAllPosts().then(() => {
+      let objectConstructor = {}.constructor;
+      try {
+        getPostsUsingThen(postID).then((response) => {
+          console.log("submitForm!");
+          //do not do this
+          if (response.constructor === objectConstructor) {
+            if (viewResult.length > 0) {
+              let temp = viewResult.splice(0, 1, response);
+              console.log(temp);
+              setViewResult(viewResult.splice(0, 1, response));
+            } else {
+              setViewResult([]);
+              viewResult.push(response);
+              setViewResult(viewResult);
+            }
+            console.log("Not Array!");
           } else {
-            setViewResult([]);
-            viewResult.push(response);
-            setViewResult(viewResult);
+            setViewResult(response);
+            showBanner();
           }
-          console.log("Not Array!");
-        } else {
-          setViewResult(response);
-          showBanner();
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log("Done!");
-    }
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        console.log("Done!");
+      }
+    });
   };
 
   const showBanner = () => {
@@ -103,19 +112,25 @@ function TestApiPage() {
         <h1>TestApi Page</h1>
       </div>
       <div>
-        <label> ID </label>
+        {/* <label> ID </label>
         <input
           type="text"
           value={postID}
           onChange={(e) => setpostID(e.target.value)}
-        ></input>
+        ></input> */}
+        <TextField
+          id="standard-password-input"
+          label="ID"
+          type="text"
+          onChange={(e) => setpostID(e.target.value)}
+        />
       </div>
       <div className="submitButton">
         <Button
           variant="contained"
           color="primary"
-            onClick={() => submitFormAsync()}
-          // onClick={() => submitForm()}
+          // onClick={() => submitFormAsync()}
+          onClick={() => submitForm()}
         >
           Search
         </Button>
