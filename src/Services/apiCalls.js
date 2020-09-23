@@ -4,8 +4,7 @@ const baseurlMine = "http://192.168.50.28:8080";
 export const getAllPosts = () => {
   return new Promise((resolve, reject) => {
     try {
-      console.log(`${baseurlMine}/potss`);
-      fetch(`${baseurlMine}/potss`)
+      fetch(`${baseurlMine}/posts`)
         .then((response) => {
           console.log(response);
           response.json();

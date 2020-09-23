@@ -8,34 +8,36 @@ import { submitPostsUsingThen } from "../Services/apiCalls";
 function Shop({ history }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitPost = async () => {
-    console.log("submit");
     try {
-      const response = await submitPostsUsingThen({ title: title, body: body });
-      console.log("response: " + response);
-      history.push({
-        pathname: ITEM,
-        title: response.title,
-        body: response.body,
-      });
-      // submitPostsUsingThen().then((response) => {
-      //   console.log("Response from Submit: ", response);
-      //   history.push({
-      //     pathname: ITEM,
-      //     title: response.title,
-      //     body: response.body,
-      //   });
+      // setIsLoading(true);
+      // const response = await submitPostsUsingThen({ title: title, body: body });
+      // console.log("response: " + response);
+      // history.push({
+      //   pathname: ITEM,
+      //   title: response.title,
+      //   body: response.body,
       // });
+      submitPostsUsingThen().then((response) => {
+        setIsLoading(true);
+        console.log("Response from Submit: ", response);
+        history.push({
+          pathname: ITEM,
+          title: response.title,
+          body: response.body,
+        });
+      });
     } catch (error) {
       console.error(error);
     } finally {
-      console.log("Done!");
+      setIsLoading(false);
     }
   };
 
   return (
-    <div>
+    <React.Fragment>
       <h1>Shop page</h1>
       <div>
         <TextField
@@ -54,17 +56,19 @@ function Shop({ history }) {
         />
       </div>
 
-      <div>{'State: '+title + " " + body} </div>
+      <div>{"State: " + title + " " + body} </div>
       <div className="submitButton">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => submitPost()}
-        >
+        <Button variant="contained" color="primary" onClick={submitPost}>
           GO to Item Page
         </Button>
       </div>
-    </div>
+
+      {isLoading && (
+        <div>
+          <h2>Loading...</h2>
+        </div>
+      )}
+    </React.Fragment>
   );
 }
 

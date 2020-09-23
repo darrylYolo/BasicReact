@@ -8,7 +8,7 @@ import {
 } from "../Services/apiCalls";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import CustomInput from "../common/CustomInput";
+// import CustomInput from "../common/CustomInput";
 
 import PostList from "./PostList";
 import { Alert, AlertTitle } from "@material-ui/lab";
@@ -23,20 +23,20 @@ function TestApiPage() {
   // }, [viewResult]);
 
   const submitForm = () => {
-    getAllPosts().then(() => {
+    // getAllPosts().then(() => {
       let objectConstructor = {}.constructor;
       try {
         getPostsUsingThen(postID).then((response) => {
           console.log("submitForm!");
           //do not do this
-          if (response.constructor === objectConstructor) {
-            if (viewResult.length > 0) {
-              let temp = viewResult.splice(0, 1, response);
-              console.log(temp);
-              setViewResult(viewResult.splice(0, 1, response));
-            } else {
-              setViewResult([]);
-              viewResult.push(response);
+          if (response.constructor === objectConstructor) { //remove this ones integrated with webservice
+            if (viewResult.length > 0) {                    //remove this ones integrated with webservice
+              let temp = viewResult.splice(0, 1, response); //remove this ones integrated with webservice
+              console.log(temp);                            //remove this ones integrated with webservice
+              setViewResult(viewResult.splice(0, 1, response));//remove this ones integrated with webservice
+            } else {//remove this ones integrated with webservice
+              setViewResult([]);//remove this ones integrated with webservice
+              viewResult.push(response);//remove this ones integrated with webservice
               setViewResult(viewResult);
             }
             console.log("Not Array!");
@@ -50,7 +50,7 @@ function TestApiPage() {
       } finally {
         console.log("Done!");
       }
-    });
+    // });
   };
 
   const showBanner = () => {
@@ -119,7 +119,7 @@ function TestApiPage() {
           onChange={(e) => setpostID(e.target.value)}
         ></input> */}
         <TextField
-          id="standard-password-input"
+          id="standard-input-id"
           label="ID"
           type="text"
           onChange={(e) => setpostID(e.target.value)}

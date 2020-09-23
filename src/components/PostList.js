@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
-// import { useLocation } from "react-router-dom";
-
+import React from "react";
+import PropTypes from "prop-types";
 import "../App.css";
 
 const PostList = (props) => {
-  //   const location = useLocation();
-  //   useEffect(() => {}, []);
   return (
     <div className="resultsContainer" id={props.id}>
       <h3 className="resultTitles">Title</h3>
