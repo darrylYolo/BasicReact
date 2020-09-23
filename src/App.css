@@ -21,7 +21,6 @@ nav {
 }
 
 .nav-links li {
-  /* padding: 2px; */
   padding-left: 10px;
 }
 
@@ -35,4 +34,8 @@ nav {
 
 .MuiButtonBase-root {
   margin: 7px !important;
+}
+
+.inputLabel {
+  padding-right: .2rem;
 }
