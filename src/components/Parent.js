@@ -6,11 +6,16 @@ import "../App.css";
 import CustomInput from "../common/CustomInput";
 
 function Parent() {
-  const [valueFromChild, setValueFromChild] = useState("");
+  const [valueFromChild, setValueFromChild] = useState(
+    localStorage.getItem("valueFromChild")
+      ? localStorage.getItem("valueFromChild")
+      : ""
+  );
 
-  useEffect(()=>{
-
-  },[valueFromChild])
+  useEffect(() => {
+    localStorage.setItem("valueFromChild", valueFromChild);
+    setValueFromChild(localStorage.getItem("valueFromChild"));
+  }, [valueFromChild]);
 
   const handleChange = (value) => {
     setValueFromChild(value);

@@ -20,7 +20,12 @@ function Shop({ history }) {
       //   title: response.title,
       //   body: response.body,
       // });
-      submitPostsUsingThen().then((response) => {
+      submitPostsUsingThen({
+        userId: 21,
+        id: 21,
+        title: title,
+        body: body,
+      }).then((response) => {
         setIsLoading(true);
         console.log("Response from Submit: ", response);
         history.push({

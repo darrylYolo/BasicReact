@@ -4,17 +4,15 @@ import TextField from "@material-ui/core/TextField";
 
 import "../App.css";
 
-const CustomInput = (props) => {
-  const [textValue, setTextValue] = useState("");
-  const [somethingHere, setSomethingHere] = useState("");
+const CustomInput = ({ value, id, label, type, callBack }) => {
+  const [textValue, setTextValue] = useState(value ? value : "");
   useEffect(() => {
-    console.log("useEffect!");
-    props.callBack(textValue);
-  }, [textValue, somethingHere]);
+    callBack(textValue);
+  }, [textValue]);
 
-  const handleOnBlur = () => {
-    setSomethingHere('hey')
-  };
+  // const handleOnBlur = () => {
+  //   callBack(textValue);
+  // };
 
   // const handleOnChange = ({ target: { value } }) => {
   //   // setTextValue();
@@ -23,15 +21,15 @@ const CustomInput = (props) => {
   // };
 
   return (
-    <div id={props.id}>
+    <div id={id}>
       <TextField
-        id={props.id}
-        label={props.label}
-        type={props.type}
+        id={id}
+        label={label}
+        type={type}
         value={textValue}
         onChange={(e) => setTextValue(e.target.value)}
         // onChange={handleOnChange}
-        onBlur={handleOnBlur}
+        // onBlur={handleOnBlur}
       />
     </div>
   );

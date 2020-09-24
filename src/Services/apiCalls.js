@@ -25,7 +25,7 @@ export const getAllPosts = () => {
 export const getPostsUsingThen = (id) => {
   return new Promise((resolve, reject) => {
     try {
-      fetch(`${baseurl}/posts/${id}`)
+      fetch(`${baseurlMine}/posts/${id}`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);
@@ -57,14 +57,19 @@ export const getPostsUsingAwait = async (id) => {
 };
 
 export const submitPostsUsingThen = (request) => {
-  // console.log('title! '+title);
+  console.log('request! '+request);
   return new Promise((resolve, reject) => {
     try {
-      fetch(`${baseurl}/posts`, {
+      fetch(`${baseurlMine}/posts`, {
         method: "POST",
-        body: JSON.stringify(request),
+        body: JSON.stringify({
+          userId: 91,
+          id: 91,
+          title: "bar",
+          body: "bar",
+        }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-type": "application/json;",
         },
       }).then((response) => {
         console.log(response.json);
