@@ -8,6 +8,8 @@ import { submitPostsUsingThen } from "../Services/apiCalls";
 function Shop({ history }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [id, setId] = useState("");
+  const [userId, setUserId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const submitPost = async () => {
@@ -21,8 +23,8 @@ function Shop({ history }) {
       //   body: response.body,
       // });
       submitPostsUsingThen({
-        userId: 21,
-        id: 21,
+        userId: userId,
+        id: id,
         title: title,
         body: body,
       }).then((response) => {
@@ -46,7 +48,20 @@ function Shop({ history }) {
       <h1>Shop page</h1>
       <div>
         <TextField
-          id="standard-password-input"
+          label="ID"
+          type="text"
+          onChange={(e) => setId(e.target.value)}
+        />
+      </div>
+      <div>
+        <TextField
+          label="UserId"
+          type="text"
+          onChange={(e) => setUserId(e.target.value)}
+        />
+      </div>
+      <div>
+        <TextField
           label="Title"
           type="text"
           onChange={(e) => setTitle(e.target.value)}
@@ -54,7 +69,6 @@ function Shop({ history }) {
       </div>
       <div>
         <TextField
-          id="standard-password-input"
           label="Body"
           type="text"
           onChange={(e) => setBody(e.target.value)}

@@ -29,14 +29,15 @@ function TestApiPage() {
         getPostsUsingThen(postID).then((response) => {
           console.log("submitForm!");
           //do not do this
-          if (response.constructor === objectConstructor) { //remove this ones integrated with webservice
-            if (viewResult.length > 0) {                    //remove this ones integrated with webservice
-              let temp = viewResult.splice(0, 1, response); //remove this ones integrated with webservice
-              console.log(temp);                            //remove this ones integrated with webservice
-              setViewResult(viewResult.splice(0, 1, response));//remove this ones integrated with webservice
-            } else {//remove this ones integrated with webservice
-              setViewResult([]);//remove this ones integrated with webservice
-              viewResult.push(response);//remove this ones integrated with webservice
+          if (response.constructor === objectConstructor) { 
+            if (viewResult.length > 0) {                    
+              let temp = viewResult.splice(0, 1, response); 
+              console.log(temp);                            
+              setViewResult(viewResult.splice(0, 1, response));
+            } 
+            else {
+              setViewResult([]);
+              viewResult.push(response);
               setViewResult(viewResult);
             }
             console.log("Not Array!");
@@ -92,7 +93,7 @@ function TestApiPage() {
       const response = await deleteSomethingUsingThen(postID);
       //it doesnt wait for the response
       console.log("myreponse: " + response);
-      // setViewResult(response);
+      showBanner();
     } catch (error) {
       console.error(error);
     } finally {
@@ -119,7 +120,6 @@ function TestApiPage() {
           onChange={(e) => setpostID(e.target.value)}
         ></input> */}
         <TextField
-          id="standard-input-id"
           label="ID"
           type="text"
           onChange={(e) => setpostID(e.target.value)}

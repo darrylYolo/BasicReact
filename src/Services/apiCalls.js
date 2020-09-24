@@ -57,22 +57,16 @@ export const getPostsUsingAwait = async (id) => {
 };
 
 export const submitPostsUsingThen = (request) => {
-  console.log('request! '+request);
   return new Promise((resolve, reject) => {
     try {
       fetch(`${baseurlMine}/posts`, {
         method: "POST",
-        body: JSON.stringify({
-          userId: 91,
-          id: 91,
-          title: "bar",
-          body: "bar",
-        }),
+        body: JSON.stringify(request),
         headers: {
-          "Content-type": "application/json;",
+          "Content-type": "application/json",
+          Accept: "application/json",
         },
       }).then((response) => {
-        console.log(response.json);
         return resolve(response.json());
       });
     } catch (error) {
@@ -109,14 +103,12 @@ export const postSomethingUsingAwait = () => async () => {
 
 export const deleteSomethingUsingThen = (id) => {
   try {
-    fetch(`${baseurl}/posts/${id}`, {
+    fetch(`${baseurlMine}/posts/${id}`, {
       method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        return Promise.resolve(json);
-      });
+    }).then((response) => {
+      console.log(response);
+      return Promise.resolve(response);
+    });
   } catch (error) {
     console.error(error);
     return Promise.reject(error);

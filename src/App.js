@@ -3,7 +3,10 @@ import "./App.css";
 import Nav from "./Nav";
 import Routes from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
-import history from "./history";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
+
 function App() {
   return (
     <Router history={history}>

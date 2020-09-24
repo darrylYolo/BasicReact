@@ -6,11 +6,13 @@ import "../App.css";
 import CustomInput from "../common/CustomInput";
 
 function Parent() {
-  const [valueFromChild, setValueFromChild] = useState(
-    localStorage.getItem("valueFromChild")
-      ? localStorage.getItem("valueFromChild")
-      : ""
-  );
+  // const [valueFromChild, setValueFromChild] = useState(
+  //   localStorage.getItem("valueFromChild")
+  //     ? localStorage.getItem("valueFromChild")
+  //     : ""
+  // );
+
+  const [valueFromChild, setValueFromChild] = useState("");
 
   useEffect(() => {
     localStorage.setItem("valueFromChild", valueFromChild);
@@ -27,7 +29,7 @@ function Parent() {
       <div>
         <CustomInput
           id="parent-input"
-          label="FromParent"
+          label="Parent"
           type="text"
           value={valueFromChild}
           callBack={handleChange}

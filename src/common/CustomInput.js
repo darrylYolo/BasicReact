@@ -6,19 +6,20 @@ import "../App.css";
 
 const CustomInput = ({ value, id, label, type, callBack }) => {
   const [textValue, setTextValue] = useState(value ? value : "");
-  useEffect(() => {
-    callBack(textValue);
-  }, [textValue]);
+  // useEffect(() => {
+  //   callBack(textValue);
+  // }, [textValue]);
 
   // const handleOnBlur = () => {
   //   callBack(textValue);
   // };
 
-  // const handleOnChange = ({ target: { value } }) => {
-  //   // setTextValue();
-  //   console.log(value);
-  //   props.callBack(value);
-  // };
+  const handleOnChange = ({ target: { value } }) => {
+    setTextValue(value);
+    console.log(value);
+    callBack(value);
+  };
+  
 
   return (
     <div id={id}>
@@ -27,8 +28,8 @@ const CustomInput = ({ value, id, label, type, callBack }) => {
         label={label}
         type={type}
         value={textValue}
-        onChange={(e) => setTextValue(e.target.value)}
-        // onChange={handleOnChange}
+        // onChange={(e) => setTextValue(e.target.value)}
+        onChange={handleOnChange}
         // onBlur={handleOnBlur}
       />
     </div>
