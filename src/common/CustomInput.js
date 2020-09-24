@@ -25,7 +25,7 @@ const CustomInput = ({ value, id, label, type, callBack }) => {
     <div id={id}>
       <TextField
         id={id}
-        label={label}
+        label='Child'
         type={type}
         value={textValue}
         // onChange={(e) => setTextValue(e.target.value)}

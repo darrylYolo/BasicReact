@@ -29,12 +29,13 @@ function Parent() {
       <div>
         <CustomInput
           id="parent-input"
-          label="Parent"
+          // label="Parent"
           type="text"
           value={valueFromChild}
           callBack={handleChange}
         />
       </div>
+      <div>This content is from the parent component </div>
       <div>{valueFromChild}</div>
     </React.Fragment>
   );
