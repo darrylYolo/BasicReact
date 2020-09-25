@@ -4,34 +4,33 @@ import TextField from "@material-ui/core/TextField";
 
 import "../App.css";
 
-const CustomInput = (props) => {
-  const [textValue, setTextValue] = useState("");
-  const [somethingHere, setSomethingHere] = useState("");
-  useEffect(() => {
-    console.log("useEffect!");
-    props.callBack(textValue);
-  }, [textValue, somethingHere]);
+const CustomInput = ({ value, id, label, type, callBack }) => {
+  const [textValue, setTextValue] = useState(value ? value : "");
+  // useEffect(() => {
+  //   callBack(textValue);
+  // }, [textValue]);
 
-  const handleOnBlur = () => {
-    setSomethingHere('hey')
-  };
-
-  // const handleOnChange = ({ target: { value } }) => {
-  //   // setTextValue();
-  //   console.log(value);
-  //   props.callBack(value);
+  // const handleOnBlur = () => {
+  //   callBack(textValue);
   // };
 
+  const handleOnChange = ({ target: { value } }) => {
+    setTextValue(value);
+    console.log(value);
+    callBack(value);
+  };
+  
+
   return (
-    <div id={props.id}>
+    <div id={id}>
       <TextField
-        id={props.id}
-        label={props.label}
-        type={props.type}
+        id={id}
+        label='Child'
+        type={type}
         value={textValue}
-        onChange={(e) => setTextValue(e.target.value)}
-        // onChange={handleOnChange}
-        onBlur={handleOnBlur}
+        // onChange={(e) => setTextValue(e.target.value)}
+        onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
     </div>
   );
