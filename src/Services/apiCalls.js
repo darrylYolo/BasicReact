@@ -1,5 +1,5 @@
 const baseurl = "https://jsonplaceholder.typicode.com";
-const baseurlMine = "http://192.168.50.28:8080";
+const baseurlMine = "http://localhost:8080"; // if you are using  springboot locallu use this
 
 export const getAllPosts = () => {
   return new Promise((resolve, reject) => {
